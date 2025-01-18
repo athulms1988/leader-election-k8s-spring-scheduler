@@ -3,23 +3,24 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: kubernetes-leader-election-example
-  name: kubernetes-leader-election-example
+    app: leader-election-poc
+  name: leader-election-poc
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: kubernetes-leader-election-example
+      app: leader-election-poc
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: kubernetes-leader-election-example
+        app: leader-election-poc
     spec:
       containers:
-      - image: joaomilhome/poc-leader-election
-        name: poc-leader-election
+      - image: leader-election-poc:latest
+        name: leader-election-container
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         resources: {}
